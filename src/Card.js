@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import { ref, get, push, set } from 'firebase/database';
 import { getDatabase } from 'firebase/database';
+// eslint-disable-next-line no-undef
 import { database, historyDatabase } from './firebase'; // Import the Firebase database instance
 import './Card.css';
 
@@ -123,7 +124,7 @@ const Card = ({ id, fontColor, updateStock }) => {
         <div className="img-container">
           <img src={process.env.PUBLIC_URL + `/images/${image}`} alt="CT1" />
         </div>
-        <h2>{code}</h2>
+        <h2 className="h2">{code}</h2>
         <span>{name}</span><br />
         <span>Dimensiuni: {dimensions}</span><br />
         <span id="pret">Pret: {retailPrice}</span><br />
@@ -141,7 +142,7 @@ const Card = ({ id, fontColor, updateStock }) => {
         <div className="img-container">
           <img src={process.env.PUBLIC_URL + `/images/${image}`} alt="CT1" />
         </div>
-        <h2>{code}</h2>
+        <h2 className="h2">{code}</h2>
         <span>{name}</span><br />
         <span>Dimensiuni: {dimensions}</span><br />
         <span style={{ color: "red" }}>Pret: {partnersPrice}</span><br />

@@ -1,0 +1,28 @@
+.entries-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entry-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  min-width: 300px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.entry-item h3 {
+  margin-top: 0;
+}
+
+.entry-item p {
+  margin-bottom: 5px;
+}
+
+.entry-item:last-child {
+  margin-bottom: 0;
+}

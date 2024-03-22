@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
 import { getDatabase, ref, get, set } from 'firebase/database';
-import './App.css';
+import './MonumentePage.css';
 import Footer from './Footer';
 import RightClickDisable from './RightClickDisable';
 import StockHistory from './StockHistory';
 
 
-class App extends Component {
+class MonumentePage extends Component {
   constructor() {
     super();
     this.state = {
@@ -98,4 +98,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default MonumentePage;

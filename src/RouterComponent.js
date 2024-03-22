@@ -1,9 +1,9 @@
 // RouterComponent.js
 import React from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import About from './About';     // Make sure the path is correct
-import Contact from './Contact'; // Make sure the path is correct
-import App from './App';         // Make sure the path is correct
+import Masive from './Masive';     // Make sure the path is correct
+import HistoryPage from './HistoryPage'; // Make sure the path is correct
+import MonumentePage from './MonumentePage';         // Make sure the path is correct
 import Navigation from './Navigation';
 
 
@@ -12,9 +12,9 @@ const RouterComponent = () => {
     <Router>
       <Navigation />
       <Routes>
-        <Route path="/App" element={<App />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Contact" element={<Contact />} />
+        <Route path="/App" element={<MonumentePage />} />
+        <Route path="/About" element={<Masive />} />
+        <Route path="/Contact" element={<HistoryPage />} />
         <Route path="*" element={<Navigate to="/App" />} />
       </Routes>
     </Router>

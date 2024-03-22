@@ -1,7 +1,7 @@
-img {
+.img-container img {
   max-height: 300px;
 }
-h2 {
+.h2 {
   display: block;
   margin-top: 0;
   margin-bottom: 0;
@@ -9,7 +9,7 @@ h2 {
 span {
   line-height: 22px;
 }
-p {
+.card-container p {
   position: absolute;
   bottom: 0;
 }
