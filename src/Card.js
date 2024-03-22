@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactCardFlip from 'react-card-flip';
-import { ref, get } from 'firebase/database';
+import { ref, get, push, set } from 'firebase/database';
 import { getDatabase } from 'firebase/database';
-import { database } from './firebase'; // Import the Firebase database instance
+import { database, historyDatabase } from './firebase'; // Import the Firebase database instance
 import './Card.css';
 
 const Card = ({ id, fontColor, updateStock }) => {
@@ -45,33 +45,59 @@ const Card = ({ id, fontColor, updateStock }) => {
   const handleAddStock = () => {
     // Update stock in the database
     updateStock(id, cardData.stock + 1);
+
     // Add changes to history
-    // Get the current date and time
     const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentMinutes = currentDate.getMinutes();
+    const currentDayOfMonth = currentDate.getDate();
+    const currentMonth = currentDate.getMonth() + 1;
+    const formattedDate = `${currentDate.getHours()}:${currentDate.getMinutes()}, ${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
 
-    // Format the date and time
-    const formattedMinutes = currentDate.getMinutes().toString().padStart(2, '0');
-    const formattedHours = currentDate.getHours().toString().padStart(2, '0');
-    const formattedDate = `${formattedHours}:${formattedMinutes}, ${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
-
-    // Print to console.log
-    console.log('Adaugare:', formattedDate, code, `Stoc:${stock}`);
-    }
+    // Push the new entry to Firebase
+    // eslint-disable-next-line no-undef
+    const newEntryRef = push(ref(historyDatabase, 'stockHistory'));
+    // eslint-disable-next-line no-undef
+    set(newEntryRef, {
+      operation: 'Adaugare',
+      type: "Monument",
+      hour: currentHour,
+      minutes: currentMinutes,
+      dayOfMonth: currentDayOfMonth,
+      month: currentMonth,
+      date: formattedDate,
+      code: code,
+      stock: stock+1,
+    });
+  }
 
   const handleSubtractStock = () => {
     // Update stock in the database
     updateStock(id, cardData.stock - 1);
+
     // Add changes to history
-    // Get the current date and time
     const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentMinutes = currentDate.getMinutes();
+    const currentDayOfMonth = currentDate.getDate();
+    const currentMonth = currentDate.getMonth() + 1;
+    const formattedDate = `${currentDate.getHours()}:${currentDate.getMinutes()}, ${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
 
-    // Format the date and time
-    const formattedMinutes = currentDate.getMinutes().toString().padStart(2, '0');
-    const formattedHours = currentDate.getHours().toString().padStart(2, '0');
-    const formattedDate = `${formattedHours}:${formattedMinutes}, ${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
-
-    // Print to console.log
-    console.log('Scadere:', formattedDate, code, `Stoc:${stock}`);
+    // Push the new entry to Firebase
+    // eslint-disable-next-line no-undef
+    const newEntryRef = push(ref(historyDatabase, 'stockHistory'));
+    // eslint-disable-next-line no-undef
+    set(newEntryRef, {
+      operation: 'Scadere',
+      type: "Monument",
+      hour: currentHour,
+      minutes: currentMinutes,
+      dayOfMonth: currentDayOfMonth,
+      month: currentMonth,
+      date: formattedDate,
+      code: code,
+      stock: stock-1,
+    });
   };
 
   /*Stock management code end*/
