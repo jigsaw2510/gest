@@ -68,6 +68,7 @@ const Card = ({ id, fontColor, updateStock }) => {
       date: formattedDate,
       code: code,
       stock: stock+1,
+      color: "green"
     });
   }
 
@@ -97,6 +98,7 @@ const Card = ({ id, fontColor, updateStock }) => {
       date: formattedDate,
       code: code,
       stock: stock-1,
+      color: "red"
     });
   };
 

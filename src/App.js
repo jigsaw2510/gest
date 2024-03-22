@@ -79,7 +79,8 @@ class App extends Component {
       const lowerCaseSearch = this.state.searchfield.toLowerCase();
       return (
         monument.name.toLowerCase().includes(lowerCaseSearch) ||
-        monument.code.toLowerCase().includes(lowerCaseSearch)
+        monument.code.toLowerCase().includes(lowerCaseSearch) ||
+        monument.dimensions.toLowerCase().includes(lowerCaseSearch)
       );
     });
 
