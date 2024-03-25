@@ -16,7 +16,6 @@ class HistoryPage extends Component {
   fetchDataFromFirebase = async () => {
     const db = historyDatabase;
     const dataRef = ref(db, '/stockHistory'); // Empty string for root
-
     try {
       const snapshot = await get(dataRef);
       if (snapshot.exists()) {

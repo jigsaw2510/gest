@@ -60,16 +60,11 @@ const Card = ({ id, fontColor, updateStock }) => {
     const newEntryRef = push(ref(historyDatabase, 'stockHistory'));
     // eslint-disable-next-line no-undef
     set(newEntryRef, {
-      operation: 'Adaugare',
-      type: "Monument",
-      hour: currentHour,
-      minutes: currentMinutes,
-      dayOfMonth: currentDayOfMonth,
-      month: currentMonth,
-      date: formattedDate,
-      code: code,
-      stock: stock+1,
-      color: "green"
+      Operatiune: 'Adaugare',
+      Tip: "Monument",
+      Data: formattedDate,
+      Cod: code,
+      Stoc: stock+1
     });
   }
 
@@ -90,16 +85,11 @@ const Card = ({ id, fontColor, updateStock }) => {
     const newEntryRef = push(ref(historyDatabase, 'stockHistory'));
     // eslint-disable-next-line no-undef
     set(newEntryRef, {
-      operation: 'Scadere',
-      type: "Monument",
-      hour: currentHour,
-      minutes: currentMinutes,
-      dayOfMonth: currentDayOfMonth,
-      month: currentMonth,
-      date: formattedDate,
-      code: code,
-      stock: stock-1,
-      color: "red"
+      Operatiune: 'Scadere',
+      Tip: "Monument",
+      Data: formattedDate,
+      Cod: code,
+      Stoc: stock-1
     });
   };
 
