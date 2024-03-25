@@ -3,7 +3,7 @@ import ReactCardFlip from 'react-card-flip';
 import { ref, get, push, set } from 'firebase/database';
 import { getDatabase } from 'firebase/database';
 // eslint-disable-next-line no-undef
-import { database, historyDatabase } from './firebase'; // Import the Firebase database instance
+import { historyDatabase } from './firebase'; // Import the Firebase database instance
 import './Card.css';
 
 const Card = ({ id, fontColor, updateStock }) => {
@@ -49,10 +49,6 @@ const Card = ({ id, fontColor, updateStock }) => {
 
     // Add changes to history
     const currentDate = new Date();
-    const currentHour = currentDate.getHours();
-    const currentMinutes = currentDate.getMinutes();
-    const currentDayOfMonth = currentDate.getDate();
-    const currentMonth = currentDate.getMonth() + 1;
     const formattedDate = `${currentDate.getHours()}:${currentDate.getMinutes()}, ${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
 
     // Push the new entry to Firebase
@@ -74,10 +70,6 @@ const Card = ({ id, fontColor, updateStock }) => {
 
     // Add changes to history
     const currentDate = new Date();
-    const currentHour = currentDate.getHours();
-    const currentMinutes = currentDate.getMinutes();
-    const currentDayOfMonth = currentDate.getDate();
-    const currentMonth = currentDate.getMonth() + 1;
     const formattedDate = `${currentDate.getHours()}:${currentDate.getMinutes()}, ${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
 
     // Push the new entry to Firebase

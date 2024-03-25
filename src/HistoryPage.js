@@ -1,58 +1,49 @@
-import React, { Component } from 'react';
-import RightClickDisable from './RightClickDisable';
+import React, { useState, useEffect } from 'react';
+import { historyDatabase } from './firebase'; // Importing the historyDatabase from firebase.js
 import { ref, get } from 'firebase/database';
-import { historyDatabase } from './firebase.js';
 import './HistoryPage.css';
-import EntriesList from './EntriesList'; // Import the Entrieslist component
 
-class HistoryPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modificari: [] // Initialize modificari state as an empty array
-    };
-  }
+const StockHistory = () => {
+  const [data, setData] = useState([]);
 
-  fetchDataFromFirebase = async () => {
-    const db = historyDatabase;
-    const dataRef = ref(db, '/stockHistory'); // Empty string for root
-    try {
-      const snapshot = await get(dataRef);
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        const modificariArray = Object.values(data); // Convert object to array
-        this.setState({ modificari: modificariArray });
-        // Log the contents of the database
-        console.log('Contents of the database:', data);
-      } else {
-        console.log('No data available');
+  useEffect(() => {
+    const fetchData = async () => {
+      const db = historyDatabase;
+      const dataRef = ref(db, '/stockHistory');
+      try {
+        const snapshot = await get(dataRef);
+        const fetchedData = snapshot.val();
+        setData(fetchedData ? Object.values(fetchedData).reverse() : []);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-    } catch (error) {
-      console.error('Error fetching data from Firebase:', error);
-    }
-  };
+    };
 
-  componentDidMount() {
-    this.fetchDataFromFirebase();
-  }
+    fetchData();
+  }, []);
 
-  onSearchChange = (event) => {
-    this.setState({ searchfield: event.target.value });
-  };
+  return (
+    <div className="tc history-container">
+      <h1 className="h1">Istoric modificari</h1>
+      <table>
+        <thead>
+          <tr>
+            {data.length > 0 &&
+              Object.keys(data[0]).map((key) => <th key={key}>{key}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              {Object.values(item).map((value, index) => (
+                <td key={index}>{value}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
-
-  render() {
-    const { modificari } = this.state;
-
-    return (
-      <div className="entries-list-container">
-        <h1>Istoric Modificari</h1>
-        {/* Render the EntriesList component passing the data */}
-        <EntriesList entries={modificari} />
-        <RightClickDisable />
-      </div>
-    );
-  }
-}
-
-export default HistoryPage;
+export default StockHistory;

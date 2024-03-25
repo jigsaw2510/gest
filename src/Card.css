@@ -47,7 +47,7 @@ button {
 }
 
 @media screen and (max-width: 600px) {
-  img {
+  .img-container img {
     max-height: 200px;
   }
   .card-container {

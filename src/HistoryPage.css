@@ -1,6 +1,52 @@
+.history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .entry-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.5em;
+  padding: 10px;
+  width:80%;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0;
 }
 .h1 {
   margin-bottom: 100px;
+}
+@media screen and (max-width: 800px) {
+  table {
+    width: 60%;
+  }
+}
+
+/* Style for the container */
+.history-container {
+  margin-top: 20px; /* Add margin at the top */
+}
+
+/* Style for the table */
+table {
+  width: auto; /* Make the table fill its container */
+  border-collapse: collapse; /* Collapse table borders */
+  border: 2px solid #ccc; /* Add border around the table */
+  margin-top: 20px;
+  table-layout: auto;
+}
+
+/* Style for table header (th) */
+th {
+  background-color: #f2f2f2; /* Background color for header */
+  padding: 10px; /* Add padding */
+  border: 1px solid #ccc; /* Add border around header cells */
+}
+
+/* Style for table data (td) */
+td {
+  padding: 8px; /* Add padding */
+  border: 1px solid #ccc; /* Add border around data cells */
 }
