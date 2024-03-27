@@ -49,7 +49,12 @@ const Card = ({ id, fontColor, updateStock }) => {
 
     // Add changes to history
     const currentDate = new Date();
-    const formattedDate = `${currentDate.getHours()}:${currentDate.getMinutes()}, ${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
+    const hours = currentDate.getHours() < 10 ? '0' + currentDate.getHours() : currentDate.getHours();
+    const minutes = currentDate.getMinutes() < 10 ? '0' + currentDate.getMinutes() : currentDate.getMinutes();
+    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // Ensures two digits for month
+    const formattedDate = `${hours}:${minutes}, ${currentDate.getDate()}-${month}-${currentDate.getFullYear()}`;
+
+
 
     // Push the new entry to Firebase
     // eslint-disable-next-line no-undef
@@ -70,7 +75,10 @@ const Card = ({ id, fontColor, updateStock }) => {
 
     // Add changes to history
     const currentDate = new Date();
-    const formattedDate = `${currentDate.getHours()}:${currentDate.getMinutes()}, ${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
+    const hours = currentDate.getHours() < 10 ? '0' + currentDate.getHours() : currentDate.getHours();
+    const minutes = currentDate.getMinutes() < 10 ? '0' + currentDate.getMinutes() : currentDate.getMinutes();
+    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // Ensures two digits for month
+    const formattedDate = `${hours}:${minutes}, ${currentDate.getDate()}-${month}-${currentDate.getFullYear()}`;
 
     // Push the new entry to Firebase
     // eslint-disable-next-line no-undef
